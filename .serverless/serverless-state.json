@@ -125,6 +125,18 @@
               "LogGroupName": "/aws/lambda/bookshopservicever2-dev-getBook"
             }
           },
+          "DeleteBookLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/bookshopservicever2-dev-deleteBook"
+            }
+          },
+          "UpdateBookLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/bookshopservicever2-dev-updateBook"
+            }
+          },
           "IamRoleLambdaExecution": {
             "Type": "AWS::IAM::Role",
             "Properties": {
@@ -251,6 +263,18 @@
                               "GetBookLogGroup",
                               "Arn"
                             ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "DeleteBookLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "UpdateBookLogGroup",
+                              "Arn"
+                            ]
                           }
                         ]
                       }
@@ -267,7 +291,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/bookshopservicever2/dev/1637641435628-2021-11-23T04:23:55.628Z/build/distributions/hello.zip"
+                "S3Key": "serverless/bookshopservicever2/dev/1637748580783-2021-11-24T10:09:40.783Z/build/distributions/hello.zip"
               },
               "Handler": "com.serverless.Handler",
               "Runtime": "java8",
@@ -292,7 +316,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/bookshopservicever2/dev/1637641435628-2021-11-23T04:23:55.628Z/build/distributions/hello.zip"
+                "S3Key": "serverless/bookshopservicever2/dev/1637748580783-2021-11-24T10:09:40.783Z/build/distributions/hello.zip"
               },
               "Handler": "com.serverless.CreateBookHandler",
               "Runtime": "java8",
@@ -317,7 +341,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/bookshopservicever2/dev/1637641435628-2021-11-23T04:23:55.628Z/build/distributions/hello.zip"
+                "S3Key": "serverless/bookshopservicever2/dev/1637748580783-2021-11-24T10:09:40.783Z/build/distributions/hello.zip"
               },
               "Handler": "com.serverless.GetBookHandler",
               "Runtime": "java8",
@@ -335,34 +359,104 @@
               "GetBookLogGroup"
             ]
           },
-          "GetBookLambdaVersionXn3EKb3TbOW5lU0Uj3SqlPOhIVohxmyVx95RWB8Ub3U": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
+          "DeleteBookLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
             "Properties": {
-              "FunctionName": {
-                "Ref": "GetBookLambdaFunction"
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/bookshopservicever2/dev/1637748580783-2021-11-24T10:09:40.783Z/build/distributions/hello.zip"
               },
-              "CodeSha256": "8m8q8eYVMdn3zWdylfVDOjfTL8dFCkQzJsEceIjXYU4="
-            }
+              "Handler": "com.serverless.DeleteBookHandler",
+              "Runtime": "java8",
+              "FunctionName": "bookshopservicever2-dev-deleteBook",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "DeleteBookLogGroup"
+            ]
           },
-          "HelloLambdaVersion0L0Y0QZ9ICIGWJTVjoRnyltkDrYziFBV4w1aeCjtU8w": {
+          "UpdateBookLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/bookshopservicever2/dev/1637748580783-2021-11-24T10:09:40.783Z/build/distributions/hello.zip"
+              },
+              "Handler": "com.serverless.UpdateBookHandler",
+              "Runtime": "java8",
+              "FunctionName": "bookshopservicever2-dev-updateBook",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "UpdateBookLogGroup"
+            ]
+          },
+          "HelloLambdaVersionfVGsEZihvNmVo0PWdIkG9cxhE3Wmp7cHTbAL0bA8": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "HelloLambdaFunction"
               },
-              "CodeSha256": "8m8q8eYVMdn3zWdylfVDOjfTL8dFCkQzJsEceIjXYU4="
+              "CodeSha256": "ULMawsR1IlTceY0xgYu8QI7Z0pxUB99OrbHA8GgZwik="
             }
           },
-          "CreateBookLambdaVersionk51LD99GKujGBd6JqnJ9cxD70YsuKcZXS1ab3Wa4": {
+          "CreateBookLambdaVersionOqAnIkSCSHcuICYSzMioWfxJKJ1cE6DJNR04pLY3ZRU": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateBookLambdaFunction"
               },
-              "CodeSha256": "8m8q8eYVMdn3zWdylfVDOjfTL8dFCkQzJsEceIjXYU4="
+              "CodeSha256": "ULMawsR1IlTceY0xgYu8QI7Z0pxUB99OrbHA8GgZwik="
+            }
+          },
+          "GetBookLambdaVersionswrVP8TG3kVRDODjgcue9Q7XDRaXfVrCqgBvrBjvBwc": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetBookLambdaFunction"
+              },
+              "CodeSha256": "ULMawsR1IlTceY0xgYu8QI7Z0pxUB99OrbHA8GgZwik="
+            }
+          },
+          "DeleteBookLambdaVersionDHjZEfJMG4BvbK7g2Pf2l3jt1cTlGoYNJRUfiVuRbw": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "DeleteBookLambdaFunction"
+              },
+              "CodeSha256": "ULMawsR1IlTceY0xgYu8QI7Z0pxUB99OrbHA8GgZwik="
+            }
+          },
+          "UpdateBookLambdaVersionzmw90lLsFeYYJhgHh7OD10ug9FJ3BeAYm2VO9e5Gw": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "UpdateBookLambdaFunction"
+              },
+              "CodeSha256": "ULMawsR1IlTceY0xgYu8QI7Z0pxUB99OrbHA8GgZwik="
             }
           },
           "ApiGatewayRestApi": {
@@ -387,6 +481,18 @@
                 ]
               },
               "PathPart": "book",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceBookIdVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceBook"
+              },
+              "PathPart": "{id}",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
@@ -484,7 +590,99 @@
               "GetBookLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1637641426709": {
+          "ApiGatewayMethodBookIdVarDelete": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "DELETE",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceBookIdVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "DeleteBookLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            },
+            "DependsOn": [
+              "DeleteBookLambdaPermissionApiGateway"
+            ]
+          },
+          "ApiGatewayMethodBookPut": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "PUT",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceBook"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "UpdateBookLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            },
+            "DependsOn": [
+              "UpdateBookLambdaPermissionApiGateway"
+            ]
+          },
+          "ApiGatewayDeployment1637748570927": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -494,7 +692,9 @@
             },
             "DependsOn": [
               "ApiGatewayMethodBookPost",
-              "ApiGatewayMethodBookGet"
+              "ApiGatewayMethodBookGet",
+              "ApiGatewayMethodBookIdVarDelete",
+              "ApiGatewayMethodBookPut"
             ]
           },
           "CreateBookLambdaPermissionApiGateway": {
@@ -540,6 +740,80 @@
               "FunctionName": {
                 "Fn::GetAtt": [
                   "GetBookLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "DeleteBookLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "DeleteBookLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "UpdateBookLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "UpdateBookLambdaFunction",
                   "Arn"
                 ]
               },
@@ -680,7 +954,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/bookshopservicever2/dev/1637641435628-2021-11-23T04:23:55.628Z/custom-resources.zip"
+                "S3Key": "serverless/bookshopservicever2/dev/1637748580783-2021-11-24T10:09:40.783Z/custom-resources.zip"
               },
               "FunctionName": "bookshopservicever2-dev-custom-resource-apigw-cw-role",
               "Handler": "apiGatewayCloudWatchRole/handler.handler",
@@ -750,6 +1024,26 @@
               }
             }
           },
+          "CWLSubFilterDeleteBookLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:15fe1ee3-f726-4895-9fa1-266fbf002dea#GwcYkTP6NYXhXDmlRn#bookshopservicever2#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "DeleteBookLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterUpdateBookLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:15fe1ee3-f726-4895-9fa1-266fbf002dea#GwcYkTP6NYXhXDmlRn#bookshopservicever2#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "UpdateBookLogGroup"
+              }
+            }
+          },
           "CWLSubFilterApiGatewayLogGroupUsEast1": {
             "Type": "AWS::Logs::SubscriptionFilter",
             "Properties": {
@@ -781,19 +1075,10 @@
               "Name": "sls-bookshopservicever2-dev-EnterpriseLogAccessIamRole"
             }
           },
-          "GetBookLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "GetBookLambdaVersionXn3EKb3TbOW5lU0Uj3SqlPOhIVohxmyVx95RWB8Ub3U"
-            },
-            "Export": {
-              "Name": "sls-bookshopservicever2-dev-GetBookLambdaFunctionQualifiedArn"
-            }
-          },
           "HelloLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "HelloLambdaVersion0L0Y0QZ9ICIGWJTVjoRnyltkDrYziFBV4w1aeCjtU8w"
+              "Ref": "HelloLambdaVersionfVGsEZihvNmVo0PWdIkG9cxhE3Wmp7cHTbAL0bA8"
             },
             "Export": {
               "Name": "sls-bookshopservicever2-dev-HelloLambdaFunctionQualifiedArn"
@@ -802,10 +1087,37 @@
           "CreateBookLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateBookLambdaVersionk51LD99GKujGBd6JqnJ9cxD70YsuKcZXS1ab3Wa4"
+              "Ref": "CreateBookLambdaVersionOqAnIkSCSHcuICYSzMioWfxJKJ1cE6DJNR04pLY3ZRU"
             },
             "Export": {
               "Name": "sls-bookshopservicever2-dev-CreateBookLambdaFunctionQualifiedArn"
+            }
+          },
+          "GetBookLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GetBookLambdaVersionswrVP8TG3kVRDODjgcue9Q7XDRaXfVrCqgBvrBjvBwc"
+            },
+            "Export": {
+              "Name": "sls-bookshopservicever2-dev-GetBookLambdaFunctionQualifiedArn"
+            }
+          },
+          "DeleteBookLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "DeleteBookLambdaVersionDHjZEfJMG4BvbK7g2Pf2l3jt1cTlGoYNJRUfiVuRbw"
+            },
+            "Export": {
+              "Name": "sls-bookshopservicever2-dev-DeleteBookLambdaFunctionQualifiedArn"
+            }
+          },
+          "UpdateBookLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "UpdateBookLambdaVersionzmw90lLsFeYYJhgHh7OD10ug9FJ3BeAYm2VO9e5Gw"
+            },
+            "Export": {
+              "Name": "sls-bookshopservicever2-dev-UpdateBookLambdaFunctionQualifiedArn"
             }
           },
           "ServiceEndpoint": {
@@ -939,7 +1251,7 @@
         "timeout": 6,
         "runtime": "java8",
         "vpc": {},
-        "versionLogicalId": "HelloLambdaVersion0L0Y0QZ9ICIGWJTVjoRnyltkDrYziFBV4w1aeCjtU8w"
+        "versionLogicalId": "HelloLambdaVersionfVGsEZihvNmVo0PWdIkG9cxhE3Wmp7cHTbAL0bA8"
       },
       "createBook": {
         "handler": "com.serverless.CreateBookHandler",
@@ -958,7 +1270,7 @@
         "timeout": 6,
         "runtime": "java8",
         "vpc": {},
-        "versionLogicalId": "CreateBookLambdaVersionk51LD99GKujGBd6JqnJ9cxD70YsuKcZXS1ab3Wa4"
+        "versionLogicalId": "CreateBookLambdaVersionOqAnIkSCSHcuICYSzMioWfxJKJ1cE6DJNR04pLY3ZRU"
       },
       "getBook": {
         "handler": "com.serverless.GetBookHandler",
@@ -977,7 +1289,45 @@
         "timeout": 6,
         "runtime": "java8",
         "vpc": {},
-        "versionLogicalId": "GetBookLambdaVersionXn3EKb3TbOW5lU0Uj3SqlPOhIVohxmyVx95RWB8Ub3U"
+        "versionLogicalId": "GetBookLambdaVersionswrVP8TG3kVRDODjgcue9Q7XDRaXfVrCqgBvrBjvBwc"
+      },
+      "deleteBook": {
+        "handler": "com.serverless.DeleteBookHandler",
+        "events": [
+          {
+            "http": {
+              "path": "book/{id}",
+              "method": "delete",
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "bookshopservicever2-dev-deleteBook",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "java8",
+        "vpc": {},
+        "versionLogicalId": "DeleteBookLambdaVersionDHjZEfJMG4BvbK7g2Pf2l3jt1cTlGoYNJRUfiVuRbw"
+      },
+      "updateBook": {
+        "handler": "com.serverless.UpdateBookHandler",
+        "events": [
+          {
+            "http": {
+              "path": "book",
+              "method": "put",
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "bookshopservicever2-dev-updateBook",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "java8",
+        "vpc": {},
+        "versionLogicalId": "UpdateBookLambdaVersionzmw90lLsFeYYJhgHh7OD10ug9FJ3BeAYm2VO9e5Gw"
       }
     },
     "resources": {
@@ -1028,7 +1378,7 @@
           "s_*.js",
           "serverless_sdk/**"
         ],
-        "artifactDirectoryName": "serverless/bookshopservicever2/dev/1637641435628-2021-11-23T04:23:55.628Z"
+        "artifactDirectoryName": "serverless/bookshopservicever2/dev/1637748580783-2021-11-24T10:09:40.783Z"
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
@@ -1046,7 +1396,7 @@
     "appUid": "GwcYkTP6NYXhXDmlRn"
   },
   "package": {
-    "artifactDirectoryName": "serverless/bookshopservicever2/dev/1637641435628-2021-11-23T04:23:55.628Z",
+    "artifactDirectoryName": "serverless/bookshopservicever2/dev/1637748580783-2021-11-24T10:09:40.783Z",
     "artifact": "build/distributions/hello.zip"
   }
 }

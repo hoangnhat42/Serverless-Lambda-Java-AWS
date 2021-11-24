@@ -6,7 +6,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.*;
 @DynamoDBDocument
 public class bookmodel {
     private String id;
-    private String bookId;
     private String author;
     private String description;
     private String publishDate;
@@ -19,11 +18,6 @@ public class bookmodel {
 
     public String getId() {
         return id;
-    }
-
-    @DynamoDBAttribute(attributeName = "bookId")
-    public String getBookId() {
-        return bookId;
     }
 
     @DynamoDBAttribute(attributeName = "author")
@@ -55,9 +49,6 @@ public class bookmodel {
         this.id = id;
     }
 
-    public void setBookId(String bookId) {
-        this.bookId = bookId;
-    }
 
     public void setAuthor(String author) {
         this.author = author;

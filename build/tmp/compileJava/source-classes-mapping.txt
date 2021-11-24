@@ -11,8 +11,12 @@ com/serverless/ApiGatewayResponse.java
  com.serverless.ApiGatewayResponse$Builder
 com/serverless/Handler.java
  com.serverless.Handler
+com/serverless/DeleteBookHandler.java
+ com.serverless.DeleteBookHandler
 com/serverless/bookmodel.java
  com.serverless.bookmodel
+com/serverless/UpdateBookHandler.java
+ com.serverless.UpdateBookHandler
 com/serverless/Response.java
  com.serverless.Response
 com/serverless/CreateBookHandler.java

@@ -42,6 +42,18 @@ functions:
       - http:
           path: /book
           method: get
+  deleteBook:
+    handler: com.serverless.DeleteBookHandler
+    events:
+      - http:
+          path: /book/{id}
+          method: delete
+  updateBook:
+    handler: com.serverless.UpdateBookHandler
+    events:
+      - http:
+          path: /book
+          method: put
 
 resources:
   Resources:
