@@ -36,24 +36,28 @@ functions:
       - http:
           path: /book
           method: post
+          cors: true
   getBook:
     handler: com.serverless.GetBookHandler
     events:
       - http:
           path: /book
           method: get
+          cors: true
   deleteBook:
     handler: com.serverless.DeleteBookHandler
     events:
       - http:
           path: /book/{id}
           method: delete
+          cors: true
   updateBook:
     handler: com.serverless.UpdateBookHandler
     events:
       - http:
           path: /book
           method: put
+          cors: true
 
 resources:
   Resources:
